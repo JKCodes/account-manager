@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   helpers do 
     def valid_signup_params?(params)
-      if params[:username] == "" || params[:email] == "" || params[:password] == ""
+      if params[:username].empty? || params[:email].empty? || params[:password].empty?
         flash[:message] = "VALIDATION ERROR: Please ensure that all three fields are filled out"
         false
       else
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     end
 
     def valid_login_params?(params)
-      if params[:username] == "" || params[:password] == ""
+      if params[:username].empty? || params[:password].empty?
         flash[:message] = "VALIDATION ERROR: Please ensure that both email and password fields are filled out"
         false
       else
@@ -34,12 +34,7 @@ class UsersController < ApplicationController
   post '/signup' do
     redirect "signup" if !valid_signup_params?(params)
 
-    user = User.new
-    #note: I am intentionally not downcasing usernames
-    user.username = params[:username]
-    user.email = params[:email].downcase
-    user.password = params[:password]
-    user.save
+    user = User.create(params)
     session[:user_id] = user.id
 
     redirect "/accounts"
@@ -55,7 +50,9 @@ class UsersController < ApplicationController
 
   post '/login' do
     redirect "/login" if !valid_login_params?(params)
+    
     user = User.find_by(username: params[:username])
+    
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect "/accounts"

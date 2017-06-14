@@ -2,7 +2,7 @@
 
 ## Overview
 
-For this assessment you'll be creating any sort of CRUD app. The app should be a custom app that is created to track something important to you. Whether that's your golf club collection, or a travel app. These types of apps are generally referred to as CRUD (Create Read Update Delete apps) or simple Content Management Systems.
+Account Manager allows users to add various accounts with balance on them.  Users must create an account to use Account Manager, and users can only view their own accounts.  Furthermore, if a user is not logged in, only main index page, sign up page, and login page are accessible.  If a user attempts to read, edit, or delete an account that does not belong to them, they will be redirected to their /accounts page with an error message.
 
 ## Installation
 
