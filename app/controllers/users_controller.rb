@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   end
 
   get '/signup' do
-    # Do logged in scenarios later
     if logged_in?
       redirect "/accounts"
     else
@@ -28,7 +27,11 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
-    erb :login
+    if logged_in?
+      redirect "/accounts"
+    else
+      erb :login
+    end
   end
 
   post 'login' do
