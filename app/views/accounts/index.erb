@@ -6,7 +6,11 @@
   <h3>Account List</h3>
   <ul>
     <% @accounts.each do |account| %>
-      <li><%= account.name %> (balance: $<%= sprintf "%.2f", account.balance %>)</li>
+      <li>
+        <a href="/accounts/<%= account.id %>/edit">
+          <%= account.name %> (balance: $<%= sprintf "%.2f", account.balance %>)
+        </a>
+      </li>
     <% end %>
   </ul>
 <% end %>
