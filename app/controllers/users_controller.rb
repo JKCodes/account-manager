@@ -35,8 +35,9 @@ class UsersController < ApplicationController
     redirect "signup" if !valid_signup_params?(params)
 
     user = User.new
+    #note: I am intentionally not downcasing usernames
     user.username = params[:username]
-    user.email = params[:email]
+    user.email = params[:email].downcase
     user.password = params[:password]
     user.save
     session[:user_id] = user.id
@@ -59,6 +60,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect "/accounts"
     else
+      flash[:message] = "AUTHENTICATION ERROR: Invalid username/password combination"
       redirect "/login"
     end
   end
