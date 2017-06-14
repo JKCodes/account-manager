@@ -13,6 +13,10 @@ class AccountsController < ApplicationController
     def valid_params?(params)
       !params[:name].empty? && !params[:balance].empty?
     end
+
+    def users_account_from_id(id)
+      current_user.accounts.find_by(id: id)
+    end
   end
 
   get '/accounts' do
@@ -37,7 +41,7 @@ class AccountsController < ApplicationController
   get '/accounts/:id/edit' do
     redirect_if_not_logged_in
     process_ids(params[:id])
-    @account = current_user.accounts.find_by(id: params[:id])
+    @account = users_account_from_id(params[:id])
     erb :"accounts/edit"
   end
 
@@ -57,7 +61,7 @@ class AccountsController < ApplicationController
   patch '/accounts/:id' do
     redirect_if_not_logged_in
     redirect "/accounts/#{params[:id]}/edit" if !valid_params?(params)
-    account = current_user.accounts.find_by(id: params[:id])
+    account = users_account_from_id(params[:id])
     account.name = params[:name]
     account.balance = params[:balance]
     account.save
@@ -67,6 +71,7 @@ class AccountsController < ApplicationController
 
   delete '/accounts/:id/delete' do
     redirect_if_not_logged_in
+
 
   end
 end
