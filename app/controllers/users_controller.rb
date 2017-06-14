@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
     def valid_login_params?(params)
       if params[:username].empty? || params[:password].empty?
-        flash[:message] = "VALIDATION ERROR: Please ensure that both email and password fields are filled out"
+        flash[:message] = "VALIDATION ERROR: Please ensure that both username and password fields are filled out"
         false
       else
         true
