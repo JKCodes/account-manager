@@ -1,5 +1,20 @@
 class AccountsController < ApplicationController
 
+  helpers do 
+    def redirect_if_not_logged_in
+      redirect "/login" if !logged_in?
+    end
+
+    def process_ids(id)
+      @account = current_user.accounts.find_by(id: id)
+      redirect "/accounts" if !@account
+    end
+
+    def valid_params?(params)
+      !params[:name].empty? && !params[:balance].empty?
+    end
+  end
+
   get '/accounts' do
     redirect_if_not_logged_in
     @accounts = current_user.accounts
@@ -14,24 +29,22 @@ class AccountsController < ApplicationController
 
   get '/accounts/:id' do
     redirect_if_not_logged_in
-    @account = current_user.accounts.find_by(id: params[:id])
-    redirect "/accounts" if !@account
+    process_ids(params[:id])
 
     erb :"accounts/show"
   end
 
   get '/accounts/:id/edit' do
     redirect_if_not_logged_in
+    process_ids(params[:id])
 
-    @account = Account.find_by(id: params[:id])
-    redirect "/accounts" if !@account || !matches_current_user_id?(@account.user_id)
 
     erb :"accounts/edit"
   end
 
   post '/accounts' do
     redirect_if_not_logged_in
-    redirect "/accounts/new" if params[:name] == "" || params[:balance] == ""
+    redirect "/accounts/new" if !valid_params?(params)
 
     account = Account.new
     account.name = params[:name]
