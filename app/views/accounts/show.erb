@@ -3,6 +3,8 @@
 <h2>Name of the account: <%= @account.name %></h2>
 <h2>Current Balance: <%= @account.balance %></h2>
 
+<a href="/accounts">Go to all acounts</a><br><br>
+
 <a href="/accounts/<%= @account.id%>/edit">Edit Account</a><br><br>
 
 <form action="/accounts/<%= @account.id %>/delete" method="post">
