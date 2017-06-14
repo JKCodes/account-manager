@@ -2,7 +2,7 @@ class AccountsController < ApplicationController
 
   get '/accounts' do
     redirect_if_not_logged_in
-
+    @accounts = Account.find_by(id: session[:user_id])
     erb :"accounts/index"
   end
 
@@ -36,6 +36,6 @@ class AccountsController < ApplicationController
 
   delete '/accounts/:id/delete' do
     redirect_if_not_logged_in
-    
+
   end
 end
