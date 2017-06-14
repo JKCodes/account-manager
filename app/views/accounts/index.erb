@@ -7,7 +7,7 @@
   <ul>
     <% @accounts.each do |account| %>
       <li>
-        <a href="/accounts/<%= account.id %>/edit">
+        <a href="/accounts/<%= account.id %>">
           <%= account.name %> (balance: $<%= sprintf "%.2f", account.balance %>)
         </a>
       </li>

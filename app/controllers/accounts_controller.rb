@@ -22,7 +22,7 @@ class AccountsController < ApplicationController
     redirect_if_not_logged_in
 
     @account = Account.find_by(id: params[:id])
-    redirect "/accounts" if !@account || @account.user_id != current_user.id
+    redirect "/accounts" if !@account || !matches_current_user_id?(@account.user_id)
 
     erb :"accounts/edit"
   end

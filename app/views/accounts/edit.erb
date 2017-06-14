@@ -1,1 +1,14 @@
 <h1>Edit Account Form</h1>
+
+<form action="/accounts" method="post">
+  <input type="hidden" id="hidden" name="_method" value="patch">
+  <label for="name">Name: </label>
+  <input id="name" type="text" name="name" value=<% @account.name %>><br>
+  <label for="balance">Balance: </label>
+  <input id="balance" type="number" step="0.01" name="balance" value=<% @account.balance %>><br>
+
+  <input type="submit" value="Edit Account">
+</form>
+
+<br>
+<a href="/accounts/<%=@account.id%>">Go to this account's details page</a>
