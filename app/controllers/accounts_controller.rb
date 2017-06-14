@@ -14,6 +14,8 @@ class AccountsController < ApplicationController
 
   get '/accounts/:id' do
     redirect_if_not_logged_in
+    @account = current_user.accounts.find_by(id: params[:id])
+    redirect "/accounts" if !@account
 
     erb :"accounts/show"
   end

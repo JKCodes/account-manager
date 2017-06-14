@@ -1,1 +1,11 @@
-<h1>Show Account Form</h1>
+<h1>Your Account Details</h1>
+<h2>Owner of this account: <%= @account.user.username %></h2>
+<h2>Name of the account: <%= @account.name %></h2>
+<h2>Current Balance: <%= @account.balance %></h2>
+
+<a href="/accounts/<%= @account.id%>/edit">Edit Account</a><br><br>
+
+<form action="/accounts/<%= @account.id %>/delete" method="post">
+  <input type="hidden" id="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Account">
+</form>
