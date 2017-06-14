@@ -5,10 +5,23 @@ class UsersController < ApplicationController
   end
 
   get '/signup' do
+    # Do logged in scenarios later
+
     erb :signup
   end
 
-  post 'signup' do
+  post '/signup' do
+    # Refactor line below later
+    redirect "signup" if params[:username] == "" || params[:email] == "" || params[:password] == ""
+
+    user = User.new
+    user.username = params[:username]
+    user.email = params[:email]
+    user.password = params[:password]
+    user.save
+    session[:user_id] = user.id
+
+    erb :
 
   end
 
