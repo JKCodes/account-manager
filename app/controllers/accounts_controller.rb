@@ -11,7 +11,7 @@ class AccountsController < ApplicationController
       end
     end
 
-    def process_ids(id)
+    def process_id(id)
       @account = users_account_from_id(id)
       if !@account 
         flash[:message] = "You either do not have access to this account, or this account simply does not exist"
@@ -52,14 +52,14 @@ class AccountsController < ApplicationController
   get '/accounts/:id' do
     redirect_if_not_logged_in
 
-    process_ids(params[:id])
+    process_id(params[:id])
     erb :"accounts/show"
   end
 
   get '/accounts/:id/edit' do
     redirect_if_not_logged_in
 
-    process_ids(params[:id])
+    process_id(params[:id])
     @account = users_account_from_id(params[:id])
     erb :"accounts/edit"
   end
@@ -79,9 +79,7 @@ class AccountsController < ApplicationController
     redirect "/accounts/#{params[:id]}/edit" if !valid_params?(params)
 
     account = users_account_from_id(params[:id])
-    account.name = params[:name]
-    account.balance = params[:balance]
-    account.save
+    account.update(name: params[:name], balance: params[:balance])
 
     redirect "/accounts/#{account.id}"
   end
