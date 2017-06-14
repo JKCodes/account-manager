@@ -37,8 +37,7 @@ class AccountsController < ApplicationController
   get '/accounts/:id/edit' do
     redirect_if_not_logged_in
     process_ids(params[:id])
-
-
+    @account = current_user.accounts.find_by(id: params[:id])
     erb :"accounts/edit"
   end
 
@@ -57,7 +56,13 @@ class AccountsController < ApplicationController
 
   patch '/accounts/:id' do
     redirect_if_not_logged_in
+    redirect "/accounts/#{params[:id]}/edit" if !valid_params?(params)
+    account = current_user.accounts.find_by(id: params[:id])
+    account.name = params[:name]
+    account.balance = params[:balance]
+    account.save
 
+    redirect "/accounts/#{account.id}"
   end
 
   delete '/accounts/:id/delete' do
