@@ -1,9 +1,9 @@
 <h1>Hello, <%= current_user.username %>!</h1>
 <p><a href="/logout">Logout</a></p>
-<h2>Your current number of accounts: <%= @accounts ? @accounts.count : 0 %></h2>
+<h2>Your current number of accounts: <%= @accounts.count %>
 <h3><a href="/accounts/new">Add a new account</a></h3>
 
-<% if @accounts %>
+<% if @accounts.count != 0 %>
   <h3>Account List</h3>
   <ul>
     <% @accounts.each do |account| %>
