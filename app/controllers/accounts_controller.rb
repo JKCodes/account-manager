@@ -71,7 +71,9 @@ class AccountsController < ApplicationController
 
   delete '/accounts/:id/delete' do
     redirect_if_not_logged_in
+    account = users_account_from_id(params[:id])
+    account.delete
 
-
+    redirect "/accounts"
   end
 end
