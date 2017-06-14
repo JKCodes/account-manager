@@ -2,7 +2,7 @@ class AccountsController < ApplicationController
 
   get '/accounts' do
     redirect_if_not_logged_in
-    @accounts = Account.where(user_id: session[:user_id])
+    @accounts = current_user.accounts
     erb :"accounts/index"
   end
 
@@ -20,6 +20,9 @@ class AccountsController < ApplicationController
 
   get '/accounts/:id/edit' do
     redirect_if_not_logged_in
+
+    @account = Account.find_by(id: params[:id])
+    redirect "/accounts" if !@account || @account.user_id != current_user.id
 
     erb :"accounts/edit"
   end
