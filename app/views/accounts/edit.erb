@@ -3,7 +3,7 @@
 <form action="/accounts/<%= @account.id %>" method="post">
   <input type="hidden" id="hidden" name="_method" value="patch">
   <label for="name">Name: </label>
-  <input id="name" type="text" name="name" value=<%= @account.name %>><br>
+  <input id="name" type="text" name="name" value="<%= @account.name %>"><br>
   <label for="balance">Balance: </label>
   <input id="balance" type="number" step="0.01" name="balance" value=<%= @account.balance %>><br>
 
