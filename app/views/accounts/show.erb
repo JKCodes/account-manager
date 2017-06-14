@@ -1,7 +1,7 @@
 <h1>Your Account Details</h1>
 <h2>Owner of this account: <%= @account.user.username %></h2>
 <h2>Name of the account: <%= @account.name %></h2>
-<h2>Current Balance: <%= @account.balance %></h2>
+<h2>Current Balance: $<%= sprintf "%.2f", @account.balance %></h2>
 
 <a href="/accounts">Go to all acounts</a><br><br>
 
