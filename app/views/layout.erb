@@ -5,6 +5,9 @@
   <title>Account Manager</title>
 </head>
 <body>
+  <% if flash.has?(:message) %>
+    <h2><%= flash[:message] %></h2>
+  <% end %>
   <%= yield %>
 </body>
 </html>

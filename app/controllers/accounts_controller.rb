@@ -1,4 +1,7 @@
+require 'rack-flash'
+
 class AccountsController < ApplicationController
+  use Rack::Flash
 
   helpers do 
     def redirect_if_not_logged_in
@@ -11,7 +14,12 @@ class AccountsController < ApplicationController
     end
 
     def valid_params?(params)
-      !params[:name].empty? && !params[:balance].empty?
+      if params[:name].empty? || params[:balance].empty?
+        flash[:message] = "VALIDATION ERROR: Please ensure that both name and balance fields are filled out"
+        false
+      else
+        true
+      end
     end
 
     def users_account_from_id(id)
