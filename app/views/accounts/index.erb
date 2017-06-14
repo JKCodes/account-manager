@@ -1,2 +1,12 @@
-<h1>Placeholder info</h1>
-<h2>Current User: <%= current_user.username %></h2>
+<h1>Hello, <%= current_user.username %>!</h1>
+<h2>Your current number of accounts: <%= @accounts ? @accounts.count : 0 %></h2>
+<h3><a href="/accounts/new">Add a new account</a></h3>
+
+<% if @accounts %>
+  <h3>Account List</h3>
+  <ul>
+    <% @accounts.each do |account| %>
+      <li><%= account.name %> (balance: <%= @account.balance %>)</li>
+    <% end %>
+  </ul>
+<% end %>
