@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    redirect "signup" 
+    redirect "signup" if !valid_signup_params?(params)
 
     user = User.new
     user.username = params[:username]
@@ -46,14 +46,14 @@ class UsersController < ApplicationController
 
   get '/login' do
     if logged_in?
-      redirect "/accounts" if !valid_signup_params?(params)
+      redirect "/accounts"
     else
       erb :"users/login"
     end
   end
 
   post '/login' do
-    redirect "/login" if valid_login_params?(params)
+    redirect "/login" if !valid_login_params?(params)
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id

@@ -5,7 +5,10 @@ class AccountsController < ApplicationController
 
   helpers do 
     def redirect_if_not_logged_in
-      redirect "/login" if !logged_in?
+      if !logged_in?
+        flash[:message] = "You must be logged in to access anything account related"
+        redirect "/login" if !logged_in?
+      end
     end
 
     def process_ids(id)
