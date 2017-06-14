@@ -4,17 +4,16 @@ class UsersController < ApplicationController
     set :views, 'app/views/users'
   end
 
-  get '/' do
-  end
-
   get '/signup' do
-
+    erb :signup
   end
 
   post 'signup' do
+
   end
 
   get '/login' do
+    erb
   end
 
   post 'login' do

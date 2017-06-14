@@ -1,3 +1,5 @@
+require './config/environment'
+
 class ApplicationController < Sinatra::Base
 
   configure do
@@ -6,6 +8,11 @@ class ApplicationController < Sinatra::Base
     enable :sessions
     set :session_secret, "session secret super secret233"
   end
+
+  get '/' do
+    erb :signup
+  end
+
 
   helpers do
     def logged_in?
