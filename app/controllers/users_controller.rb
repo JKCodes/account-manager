@@ -6,8 +6,11 @@ class UsersController < ApplicationController
 
   get '/signup' do
     # Do logged in scenarios later
-
-    erb :signup
+    if logged_in?
+      redirect "/accounts"
+    else
+      erb :signup
+    end
   end
 
   post '/signup' do
@@ -21,8 +24,7 @@ class UsersController < ApplicationController
     user.save
     session[:user_id] = user.id
 
-    erb :"/accounts"
-
+    redirect "/accounts"
   end
 
   get '/login' do
