@@ -1,14 +1,10 @@
 class UsersController < ApplicationController
 
-  configure do
-    set :views, 'app/views/users'
-  end
-
   get '/signup' do
     if logged_in?
       redirect "/accounts"
     else
-      erb :signup
+      erb :"users/signup"
     end
   end
 
@@ -30,7 +26,7 @@ class UsersController < ApplicationController
     if logged_in?
       redirect "/accounts"
     else
-      erb :login
+      erb :"users/login"
     end
   end
 

@@ -1,10 +1,6 @@
 class AccountsController < ApplicationController
 
-  configure do
-    set :views, 'app/views/accounts'
-  end
-
   get '/accounts' do
-    erb :index
+    erb :"accounts/index"
   end
 end

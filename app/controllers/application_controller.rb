@@ -9,6 +9,14 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "session secret super secret233"
   end
 
+  get "/" do
+    if logged_in?
+      redirect "/accounts"
+    else
+      erb :index
+    end
+  end
+
   helpers do
     def logged_in?
       !!session[:user_id]
