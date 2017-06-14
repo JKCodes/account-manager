@@ -1,4 +1,27 @@
+require 'rack-flash'
+
 class UsersController < ApplicationController
+  use Rack::Flash
+
+  helpers do 
+    def valid_signup_params?(params)
+      if params[:username] == "" || params[:email] == "" || params[:password] == ""
+        flash[:message] = "VALIDATION ERROR: Please ensure that all three fields are filled out"
+        false
+      else
+        true
+      end
+    end
+
+    def valid_login_params?(params)
+      if params[:username] == "" || params[:password] == ""
+        flash[:message] = "VALIDATION ERROR: Please ensure that both email and password fields are filled out"
+        false
+      else
+        true
+      end
+    end
+  end
 
   get '/signup' do
     if logged_in?
@@ -9,8 +32,7 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    # Refactor line below later
-    redirect "signup" if params[:username] == "" || params[:email] == "" || params[:password] == ""
+    redirect "signup" 
 
     user = User.new
     user.username = params[:username]
@@ -24,14 +46,14 @@ class UsersController < ApplicationController
 
   get '/login' do
     if logged_in?
-      redirect "/accounts"
+      redirect "/accounts" if !valid_signup_params?(params)
     else
       erb :"users/login"
     end
   end
 
   post '/login' do
-    redirect "/login" if params[:username] == "" || params[:password] == ""
+    redirect "/login" if valid_login_params?(params)
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
