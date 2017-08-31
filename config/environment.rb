@@ -7,4 +7,5 @@ ActiveRecord::Base.establish_connection(
   database: "db/development.sqlite"
 )
 
+require 'pry'
 require_all 'app'
