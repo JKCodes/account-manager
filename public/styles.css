@@ -1,0 +1,174 @@
+body {
+  font-family: "Arial", serif;
+}
+
+.error {
+  text-align: center;
+  color: red;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  
+}
+
+.shadow {
+  -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
+  box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
+}
+
+.red {
+  background-color: red;
+}
+
+/* index page */
+
+.index h1, .index h2, .index h3, .index h4 {
+  text-align: center;
+}
+
+.index a {
+  box-sizing: border-box;
+  text-align: center;
+  display: inline-block;
+  text-decoration: none;
+  width: 120px;
+  border: 1px solid #aaa;
+  padding: 50px 0;
+  margin: 0px 15px;
+  color: white;
+}
+
+.index .login {
+  background-color: #3ee61c; 
+}
+
+.index .signup {
+  background-color: #20e6c5;
+}
+
+/* login & signup page */
+.basic_form {
+  width: 200px;
+  margin: 50px auto 0;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 0 20px 20px 20px;
+}
+
+.form_head {
+  margin-bottom: 15px;
+}
+
+.field {
+  margin-bottom: 18px;  
+}
+
+input {
+  box-sizing: border-box;
+  width: 200px;
+}
+
+input[type="submit"] {
+  -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
+  box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
+  background-color: #e7a61a;
+  color: #fff;
+}
+
+a.back_link {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  text-decoration: none;
+}
+
+a.back_link:hover {
+  color: gray;
+}
+
+/* accounts index */
+.logout {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  font-size: 0.8em;
+  text-decoration: none;
+  border: 1px solid red;
+  border-radius: 5px;
+  background-color: red;
+  color: white;
+  padding: 10px;
+}
+
+.logout:hover {
+  color: red;
+  background: white;
+  border: 1px solid white;
+}
+
+.account_index h1, .account_index h2, .account_index h3 {
+  text-align: center;
+}
+
+.account_index h2 {
+  margin-bottom: 40px;
+}
+
+.account_index .add_account {
+  border: 1px solid blue;
+  border-radius: 10px;
+  background-color: blue;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.account_index .account_list {
+  margin-top: 60px;
+  font-size: 1.5em;
+}
+
+.account_index p {
+  font-size: 1.4em;
+}
+
+.account_index .account_item {
+  display: inline-block;
+  text-align: center;
+  list-style-type: none;
+  width: 30%;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 50px 0;
+  margin: 0.5%;
+}
+
+.account_index .account_link {
+  text-decoration: none;
+  color: #444;
+}
+
+/*account show*/
+
+.account_show {
+  width: 85%;
+  border: 1px solid #ccc;
+  margin: 0 auto;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+.account_show_link {
+  display: block;
+  margin: 0 auto 10px;
+  box-sizing: border-box;
+  width: 200px;
+  text-decoration: none;
+  border: 1px solid green;
+  background-color: green;
+  color: white;
+  font-size: 0.7em;
+  padding: 4px;
+}
+

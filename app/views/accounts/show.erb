@@ -1,13 +1,15 @@
-<h1>Your Account Details</h1>
-<h2>Owner of this account: <%= @account.user.username %></h2>
-<h2>Name of the account: <%= @account.name %></h2>
-<h2>Current Balance: $<%= sprintf "%.2f", @account.balance %></h2>
+<div class="account_show">
+  <h1>Account Details</h1>
+  <h2>Owner: <%= @account.user.username %></h2>
+  <h2>Name: <%= @account.name %></h2>
+  <h2>Current Balance: $<%= sprintf "%.2f", @account.balance %></h2>
 
-<a href="/accounts">Go to all accounts</a><br><br>
+  <a class="account_show_link shadow" href="/accounts">Go to all accounts</a>
 
-<a href="/accounts/<%= @account.id%>/edit">Edit Account</a><br><br>
+  <a class="account_show_link shadow" href="/accounts/<%= @account.id%>/edit">Edit Account</a>
 
-<form action="/accounts/<%= @account.id %>/delete" method="post" onsubmit="return confirm('Are you sure you want to delete this account?');">
-  <input type="hidden" id="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete Account">
-</form>
+  <form class="account_show_form" action="/accounts/<%= @account.id %>/delete" method="post" onsubmit="return confirm('Are you sure you want to delete this account?');">
+    <input type="hidden" id="hidden" name="_method" value="delete">
+    <input class="red" type="submit" value="Delete Account">
+  </form>
+</div>

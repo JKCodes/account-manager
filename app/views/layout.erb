@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="/styles.css">
   <title>Account Manager</title>
 </head>
 <body>
   <% if flash.has?(:message) %>
-    <h2><%= flash[:message] %></h2>
+    <h3 class="error"><%= flash[:message] %></h3>
   <% end %>
   <%= yield %>
 </body>

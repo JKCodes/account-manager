@@ -1,17 +1,20 @@
-<h1>Hello, <%= current_user.username %>!</h1>
-<p><a href="/logout">Logout</a></p>
-<h2>Your current number of accounts: <%= @accounts.count %>
-<h3><a href="/accounts/new">Add a new account</a></h3>
+<div class="account_index">
+  <h1>Hello, <%= current_user.username %>!</h1>
+  <a class="logout shadow" href="/logout">Logout</a>
+  <h2>You currently have <%= @accounts.count %> account(s).</h2>
+  <h3><a class="add_account" href="/accounts/new">+ New Account</a></h3>
 
-<% if @accounts.count != 0 %>
-  <h3>Account List</h3>
-  <ul>
-    <% @accounts.each do |account| %>
-      <li>
-        <a href="/accounts/<%= account.id %>">
-          <%= account.name %> (balance: $<%= sprintf "%.2f", account.balance %>)
-        </a>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
+  <% if @accounts.count != 0 %>
+    <h3 class="account_list">Account List</h3>
+    <ul>
+      <% @accounts.each do |account| %>
+        <li class="account_item shadow">
+          <a class="account_link" href="/accounts/<%= account.id %>">
+            <p> <%= account.name %> </p>
+            <p> Balance: $<%= sprintf "%.2f", account.balance %></p> 
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
